@@ -1,46 +1,37 @@
 #include<iostream>
-#include<vector>
-#include<stdlib.h>
+#include<map>
 #include<string>
-#include<algorithm>
 #include<cctype>
 using namespace std;
 
 int main() {
-	int n;
-	cin >> n;
+	int T;
+	cin >> T;
 	getchar();
-
-	vector<int> cnt(26, 0);
-
-	for (int i = 0; i < n; i++) {
-		string line;
+	string line;
+	char a;
+	int s[26] = { 0 };
+	while (T--) {
 		getline(cin, line);
-
 		for (char c : line) {
 			if (isalpha(c)) {
-				c = toupper(c);//變大寫
-				cnt[c - 'A']++;
+				c = toupper(c);
+				s[c - 'A']++;
 			}
 		}
 	}
-	vector<pair<char, int>> v;
+	int mx = 0;
 	for (int i = 0; i < 26; i++) {
-		if (cnt[i] > 0) {
-			v.push_back({ char('A' + i),cnt[i] });
-		}
+		if (s[i] > mx)
+			mx = s[i];
 	}
-	int max=0;
-	for (int i = 0; i < 26; i++) {
-		if (cnt[i] > max)
-			max = cnt[i];
-	}
-	for (int i = max; i > 0; i--) {//先比較次數，在比較字母順序
-		for (int j = 0; j < 26; j++) {
-			if (cnt[j] == i) {
-				char a = j + 'A';
+	for (int i = mx; i > 0; i--) {
+		for (int j = 0; j < 26;j++) {
+			if (s[j] == i) {
+				a = j + 'A';
 				cout << a << " " << i << endl;
 			}
 		}
 	}
+return 0;
 }
