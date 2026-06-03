@@ -1,34 +1,27 @@
-#include<iostream>
-#include<stdlib.h>
 #include<string>
+#include<iostream>
+#include<algorithm>
 using namespace std;
 
-int main() {
-	string a, b;
-	while (getline(cin, a) && getline(cin, b)) {
-		
-		int A[26] = { 0 };
-		int B[26] = { 0 };
 
-		for (int i = 0; i < a.length(); i++) {
-			int pos = a[i] - 'a';
-			A[pos]++;		//如p=112,a=97，112-97=15，從a數來p在第15個位置
+int main() {
+	string a;
+	string b;
+
+	while (getline(cin, a) && getline(cin, b)) {
+		int cnta[26] = { 0 };
+		int cntb[26] = { 0 };
+		for(char c:a){
+			cnta[c - 'a']++;
 		}
-		for (int i = 0; i < b.length(); i++) {
-			int pos = b[i] - 'a';
-			B[pos]++;
+		for (char c : b) {
+			cntb[c - 'a']++;
 		}
 		for (int i = 0; i < 26; i++) {
-			if (A[i] >= 1 && B[i] >= 1) {//決定跑幾次
-				int times;
-				if (A[i] == B[i])
-					times = A[i];
-				else if (A[i] < B[i])
-					times = A[i];
-				else
-					times = B[i];
-				for (int j = 0; j < times; j++) {
-					cout << (char)(i + 'a');
+			if (cnta[i] > 0 && cntb[i] > 0 && (cnta[i] >= cntb[i]||cnta[i]<=cntb[i])) {
+				for (int j = 0; j < min(cnta[i],cntb[i]); j++) {
+					char c = i + 'a';
+					cout << c;
 				}
 			}
 		}
