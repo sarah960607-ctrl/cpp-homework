@@ -31,9 +31,6 @@ int main() {
         for (int i = 1; i < M; i++) {
             days += month[i];
         }
-
         cout << week[(days - 1) % 7] << '\n';
     }
-
-    return 0;
 }
