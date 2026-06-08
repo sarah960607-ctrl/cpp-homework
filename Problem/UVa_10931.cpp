@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-
+//算有幾個1
 int main() {
     long long n;
 
