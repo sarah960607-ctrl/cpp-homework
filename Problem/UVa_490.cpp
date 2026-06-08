@@ -27,7 +27,27 @@ int main() {
             else
                 cout << ' ';
         }
+#include<iostream>
+#include<string>
 
-        cout << '\n';
-    }
+using namespace std;
+
+int main() {
+	string s[105];
+	int n = 0;
+	int mx = 0;
+	while (getline(cin, s[n])) {
+		if (s[n].size() > mx)
+			mx = s[n].size();
+		n++;
+	}
+	for (int x = 0; x < mx; x++) {		//有幾行
+		for (int y = n-1; y >=0 ; y--) {		//印每一行的字
+			if (s[y].size() > x)		//那行字串還有東西
+				cout << s[y][x];
+			else
+				cout << ' ';
+		}
+		cout << endl;
+	}
 }
